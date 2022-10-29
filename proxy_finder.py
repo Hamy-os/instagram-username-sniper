@@ -14,6 +14,7 @@ def find_proxies():
         for proxy in proxies:
             if proxy.startswith("{"):
                 proxy = proxy.split('"host": "')[1].split('"')[0] + ":" + proxy.split('"port": ')[1].split(",")[0]
+                proxy = proxy.replace("}", "")
                 f.write(proxy + "\n")
         for url in proxy_urls:
             try:

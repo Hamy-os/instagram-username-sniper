@@ -1,1 +1,8 @@
 node_modules/
+proxies/raw_proxies.txt
+proxies/working_proxies.txt
+working/working_facebook.txt
+working/working_snapchat.txt
+proxies/working_proxies.txt
+proxies/raw_proxies.txt
+assets/failed.txt

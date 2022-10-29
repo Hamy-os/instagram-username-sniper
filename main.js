@@ -13,6 +13,8 @@ const saveInfo = async (username, website, status) => {
 
 const getUsernameStatus = async (username) => {
     try {
+        //generate random 10 character token
+        const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         // use a random proxy from working_proxies.txt
         const proxy = fs.readFileSync('proxies/working_proxies.txt').toString().split("\n")
         const randomProxy = proxy[Math.floor(Math.random() * proxy.length)]
@@ -31,7 +33,7 @@ const getUsernameStatus = async (username) => {
                 "Referer": "https://checkmarks.com/",
                 "Referrer-Policy": "strict-origin-when-cross-origin"
             },
-            "body": `checkusername=true&username=${username}&token=vgyZWmBhj3`,
+            "body": `checkusername=true&username=${username}&token=${token}`,
             "method": "POST",
             "agent": new HttpsProxyAgent(proxyUrl)
         })
@@ -42,6 +44,7 @@ const getUsernameStatus = async (username) => {
                     case "instagram":
                     case "twitter":
                     case "facebook":
+                    case "youtube":
                     case "snapchat":
                         saveInfo(username, website.website, website.status);
                 }})
