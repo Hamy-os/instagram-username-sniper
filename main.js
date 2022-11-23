@@ -59,10 +59,12 @@ const getUsernameStatus = async (username) => {
 
 const main = async () => {
     const usernames =   fs.readFileSync('assets/three.txt').toString().split("\r\n")
+    // check every username with 1 second inbetween
     for (let i = 0; i < usernames.length; i++) {
-        await new Promise(r => setTimeout(r, 1000));
         console.log("Checking username: " + usernames[i]);
-        getUsernameStatus(usernames[i]);
-    }}
+        await getUsernameStatus(usernames[i]);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+}
 
 await main()
